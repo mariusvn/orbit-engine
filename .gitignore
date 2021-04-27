@@ -1,0 +1,5 @@
+imgui.ini
+bin
+*.o
+.idea
+.vs-code
