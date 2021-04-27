@@ -16,8 +16,11 @@ int main() {
         Orbit::Model *testModel = new Orbit::Model("demo/assets/steve/steve.obj");
         Orbit::Scene *scene = new Orbit::Scene();
         Orbit::GameObject *gameObject = new Orbit::GameObject();
+        Orbit::GameObject *gameObjectb = new Orbit::GameObject();
 
         gameObject->model = testModel;
+        gameObjectb->name = "Test Object";
+        gameObject->children.push_back(gameObjectb);
 
         scene->camera.translate(Orbit::vec3(0, -5.0f, -10.0f));
 

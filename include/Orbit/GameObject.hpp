@@ -20,6 +20,7 @@ namespace Orbit {
     public:
         std::vector<GameObject*> children{};
         std::vector<Component*> components{};
+        std::string name = "GameObject";
         Model* model = nullptr;
 
         void draw(mat4 parentTranformMatrix);

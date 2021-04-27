@@ -11,6 +11,7 @@
 #include <ImGUI/imgui_impl_opengl3.h>
 #include <ImGUI/imgui_impl_glfw.h>
 #include <Orbit/Window.hpp>
+#include <Orbit/DebugMenu.hpp>
 
 namespace Orbit {
 
@@ -32,11 +33,15 @@ namespace Orbit {
         inline static unsigned int texture;
         inline static unsigned int depthbuffer;
         inline static ImVec2 texResolution = ImVec2(0, 0);
-        inline static bool isDebugMenu = false;
+        inline static bool isDebugMenu = true;
     private:
         explicit ImGuiHandler() = default;
+
+        static void setupImGuiStyle();
+
         inline static ImGuiIO* io = nullptr;
         inline static GLFWwindow* window = nullptr;
+        inline static DebugMenu menu = DebugMenu();
     };
 
 }
