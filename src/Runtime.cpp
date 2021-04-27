@@ -4,8 +4,6 @@
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <Orbit/stb_image.h>
 #include <Orbit/Runtime.hpp>
 #include <Orbit/SceneManager.hpp>
 #include <cassert>

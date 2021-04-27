@@ -1,11 +1,14 @@
 /*
  * Project: Orbit Engine
- * File: Texturecpp
+ * File: Texture.cpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 
-#include <Orbit/Texture.hpp>
+// NOTE(marius): STB implementation, do not remove the define
+#define STB_IMAGE_IMPLEMENTATION
 #include <Orbit/stb_image.h>
+
+#include <Orbit/Texture.hpp>
 #include <stdexcept>
 #include <cstring>
 #include <glad/glad.h>

@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: SceneManagercpp
+ * File: SceneManager.cpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 

@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: Typeshpp
+ * File: Types.hpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 

@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: Transformablecpp
+ * File: Transformable.cpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 

@@ -17,7 +17,7 @@ namespace Orbit {
         unsigned char getFOV() const;
         void setFOV(unsigned char val);
     private:
-        unsigned char fov;
+        unsigned char fov = 75;
     };
 }
 

@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: Modelcpp
+ * File: Model.cpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 

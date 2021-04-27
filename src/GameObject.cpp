@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: GameObjectcpp
+ * File: GameObject.cpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 

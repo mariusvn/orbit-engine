@@ -1,6 +1,6 @@
 /*
  * Project: Orbit Engine
- * File: Texturehpp
+ * File: Texture.hpp
  * Author: Marius "Astroboy" Van Nieuwenhuyse
  */
 
