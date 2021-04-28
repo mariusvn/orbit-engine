@@ -19,14 +19,17 @@ namespace Orbit {
         this->fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
         this->shaderProgram = glCreateProgram();
 
+        // NOTE(marius): Compiling vertex shader
         glShaderSource(this->vertexShader, 1, &vcontent, nullptr);
         glCompileShader(this->vertexShader);
         Shader::checkCompileStatus(this->vertexShader);
 
+        // NOTE(marius): Compiling fragment shader
         glShaderSource(this->fragmentShader, 1, &fcontent, nullptr);
         glCompileShader(this->fragmentShader);
         Shader::checkCompileStatus(this->fragmentShader);
 
+        // NOTE(marius): Linking shaders to the program
         glAttachShader(this->shaderProgram, this->vertexShader);
         glAttachShader(this->shaderProgram, this->fragmentShader);
         glLinkProgram(this->shaderProgram);
@@ -68,13 +71,20 @@ namespace Orbit {
     }
 
     void Shader::checkLinkStatus(unsigned int target) {
+        // NOTE(marius): Check linking status
         GLint isLinked = 0;
         glGetProgramiv(target, GL_LINK_STATUS, &isLinked);
+
         if (isLinked == GL_FALSE) {
+            // NOTE(marius): Get the length of the log
             GLint maxLen = 0;
             glGetProgramiv(target, GL_INFO_LOG_LENGTH, &maxLen);
+
+            // NOTE(marius): Retrieve the log
             char data[maxLen + 1];
             glGetProgramInfoLog(target, maxLen, &maxLen, data);
+
+            // NOTE(marius): Delete shader program
             glDeleteProgram(target);
             error("Error while linking shader:", data);
             throw std::runtime_error("Error while linking shader");
