@@ -13,15 +13,15 @@
 namespace Orbit {
     class Runtime {
     public:
-        static void execute(Window* window);
+        static void execute(Window *window);
         static void setRenderResolution(vec2 res);
-        static const vec2& getRenderResolution();
+        static const vec2 &getRenderResolution();
 
     private:
         explicit Runtime() = default;
-        static void render(Window* window);
+        static void render(Window *window);
 
-        inline static Scene* scene = nullptr;
+        inline static Scene *scene = nullptr;
         inline static vec2 renderResolution = vec2(0.0f, 0.0f);
     };
 }

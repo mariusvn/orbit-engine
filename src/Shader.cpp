@@ -36,7 +36,7 @@ namespace Orbit {
     Shader *Shader::loadFromFiles(const char *vertex, const char *fragment) {
         const char *vertex_content = Shader::readFile(vertex);
         const char *fragment_content = Shader::readFile(fragment);
-        auto* shader = new Shader(vertex_content, fragment_content);
+        auto *shader = new Shader(vertex_content, fragment_content);
         delete vertex_content;
         delete fragment_content;
         return shader;
@@ -44,7 +44,7 @@ namespace Orbit {
 
     const char *Shader::readFile(const char *path) {
         std::ifstream stream(path);
-        std::string content(std::istreambuf_iterator<char>(stream),(std::istreambuf_iterator<char>()));
+        std::string content(std::istreambuf_iterator<char>(stream), (std::istreambuf_iterator<char>()));
         return strdup(content.c_str());
     }
 
@@ -69,7 +69,8 @@ namespace Orbit {
 
     Shader *Shader::getStandardShader() {
         if (Shader::standardShader == nullptr) {
-            Shader::standardShader = Shader::loadFromFiles("shaders/standard/vertex.glsl", "shaders/standard/fragment.glsl");
+            Shader::standardShader = Shader::loadFromFiles("shaders/standard/vertex.glsl",
+                                                           "shaders/standard/fragment.glsl");
         }
         return Shader::standardShader;
     }

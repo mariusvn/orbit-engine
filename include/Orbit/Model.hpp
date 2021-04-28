@@ -21,10 +21,10 @@
 namespace Orbit {
     class Model {
     public:
-        std::vector<Texture*> textures_loaded;
+        std::vector<Texture *> textures_loaded;
         std::vector<Mesh> meshes;
         std::string directory;
-        Shader* shader = Shader::getStandardShader();
+        Shader *shader = Shader::getStandardShader();
         bool gammaCorrection;
 
         explicit Model(const char *path, bool gamma = false);
@@ -32,9 +32,9 @@ namespace Orbit {
 
     private:
         void loadModel(const char *path);
-        void processNode(aiNode* node, const aiScene* scene);
-        Mesh processMesh(aiMesh* mesh, const aiScene* scene);
-        std::vector<Texture*> loadMaterialTextures(aiMaterial* mat, aiTextureType type, Texture::Type typeName);
+        void processNode(aiNode *node, const aiScene *scene);
+        Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+        std::vector<Texture *> loadMaterialTextures(aiMaterial *mat, aiTextureType type, Texture::Type typeName);
     };
 }
 

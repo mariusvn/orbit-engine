@@ -13,8 +13,8 @@ namespace Orbit {
 
     void Runtime::execute(Window *window) {
         assert(window);
-        Runtime::setRenderResolution(vec2(window->getWidth(),  window->getHeight()));
-        ImGuiHandler::initFrameBuffer(ImVec2(window->getWidth(),  window->getHeight()));
+        Runtime::setRenderResolution(vec2(window->getWidth(), window->getHeight()));
+        ImGuiHandler::initFrameBuffer(ImVec2(window->getWidth(), window->getHeight()));
         while (window->isOpen()) {
             window->pollEvent();
             if (ImGuiHandler::isDebugMenu) {
@@ -33,16 +33,16 @@ namespace Orbit {
         ImGuiHandler::destroy();
     }
 
-    void Runtime::render(Window* window) {
-        const Scene* currentScene = SceneManager::getCurrentScene();
+    void Runtime::render(Window *window) {
+        const Scene *currentScene = SceneManager::getCurrentScene();
         mat4 transform;
 
         if (!currentScene || !currentScene->root)
             return;
 
         transform = glm::perspective(
-                glm::radians((float)currentScene->camera.getFOV()),
-                (float)Runtime::renderResolution.x / (float)Runtime::renderResolution.y,
+                glm::radians((float) currentScene->camera.getFOV()),
+                (float) Runtime::renderResolution.x / (float) Runtime::renderResolution.y,
                 0.1f,
                 1000.0f);
         transform *= currentScene->camera.getTransformMatrix();

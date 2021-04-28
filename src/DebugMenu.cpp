@@ -17,7 +17,8 @@ void Orbit::DebugMenu::drawInspector(const Orbit::Scene *scene) {
             ImGuiTableFlags_BordersOuter |
             ImGuiTableFlags_BordersV |
             ImGuiTableFlags_RowBg;
-    if (ImGui::BeginTable("inspectorTable", 2, flags, ImVec2(ImGui::GetWindowContentRegionWidth(), Runtime::getRenderResolution().y))) {
+    if (ImGui::BeginTable("inspectorTable", 2, flags,
+                          ImVec2(ImGui::GetWindowContentRegionWidth(), Runtime::getRenderResolution().y))) {
 
         ImGui::TableSetupColumn("Game Objects Hierarchy", ImGuiTableColumnFlags_NoHide);
         ImGui::TableSetupColumn("Game Object Inspector");
@@ -47,7 +48,7 @@ void Orbit::DebugMenu::drawGameObjectHierarchy(const Orbit::Scene *scene) {
     }
 }
 
-void Orbit::DebugMenu::drawGameObjectItem(Orbit::GameObject* go, unsigned long long int index) {
+void Orbit::DebugMenu::drawGameObjectItem(Orbit::GameObject *go, unsigned long long int index) {
     ImGuiTreeNodeFlags flags =
             ImGuiTreeNodeFlags_OpenOnArrow |
             ImGuiTreeNodeFlags_OpenOnDoubleClick |
@@ -70,7 +71,7 @@ void Orbit::DebugMenu::drawGameObjectItem(Orbit::GameObject* go, unsigned long l
 }
 
 void Orbit::DebugMenu::drawTagetProperties() {
-    GameObject* target = this->targetGameObject;
+    GameObject *target = this->targetGameObject;
 
     ImGui::Text("Transform");
     {

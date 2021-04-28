@@ -15,14 +15,14 @@ namespace Orbit {
         explicit DebugMenu() = default;
         ~DebugMenu() = default;
 
-        void drawInspector(const Scene* scene);
+        void drawInspector(const Scene *scene);
 
     private:
-        void drawGameObjectHierarchy(const Scene* scene);
-        void drawGameObjectItem(GameObject* go, unsigned long long int index);
+        void drawGameObjectHierarchy(const Scene *scene);
+        void drawGameObjectItem(GameObject *go, unsigned long long int index);
         void drawTagetProperties();
 
-        GameObject* targetGameObject = nullptr;
+        GameObject *targetGameObject = nullptr;
     };
 }
 

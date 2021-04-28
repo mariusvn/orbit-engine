@@ -12,13 +12,13 @@
 namespace Orbit {
     class SceneManager {
     public:
-        static void setCurrentScene(Scene* scene);
-        static const Scene* getCurrentScene();
+        static void setCurrentScene(Scene *scene);
+        static const Scene *getCurrentScene();
 
     private:
         explicit SceneManager() = default;
 
-        inline static Scene* currentScene = nullptr;
+        inline static Scene *currentScene = nullptr;
     };
 }
 

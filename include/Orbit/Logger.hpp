@@ -24,12 +24,14 @@ namespace Orbit {
             std::cout << t << ", ";
             Logger::__info(args...);
         }
+
         template<typename T>
         static void __info(T t) {
             std::cout << t << std::endl;
         }
+
         template<typename... Args>
-        static void __info(const char* file, const int line, Args... args) {
+        static void __info(const char *file, const int line, Args... args) {
             std::cout << "[info][" << file << ':' << line << "] ";
             Logger::__info(args...);
         }
@@ -39,12 +41,14 @@ namespace Orbit {
             std::cout << t << ", ";
             Logger::__warning(args...);
         }
+
         template<typename T>
         static void __warning(T t) {
             std::cout << t << std::endl;
         }
+
         template<typename... Args>
-        static void __warning(const char* file, const int line, Args... args) {
+        static void __warning(const char *file, const int line, Args... args) {
             std::cout << "[warning][" << file << ':' << line << "] ";
             Logger::__warning(args...);
         }
@@ -54,12 +58,14 @@ namespace Orbit {
             std::cerr << t << ", ";
             Logger::__error(args...);
         }
+
         template<typename T>
         static void __error(T t) {
             std::cerr << t << std::endl;
         }
+
         template<typename... Args>
-        static void __error(const char* file, const int line, Args... args) {
+        static void __error(const char *file, const int line, Args... args) {
             std::cerr << "[error][" << file << ':' << line << "] ";
             Logger::__error(args...);
         }

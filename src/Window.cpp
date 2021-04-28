@@ -76,7 +76,7 @@ namespace Orbit {
     }
 
     bool Window::isFocused() const {
-        return (bool)glfwGetWindowAttrib(window, GLFW_FOCUSED);
+        return (bool) glfwGetWindowAttrib(window, GLFW_FOCUSED);
     }
 
     unsigned short Window::getWidth() const {

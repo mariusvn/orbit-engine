@@ -25,7 +25,7 @@ namespace Orbit {
         unsigned short getHeight() const;
 
     private:
-        GLFWwindow* window = nullptr;
+        GLFWwindow *window = nullptr;
         bool shouldClose = false;
         unsigned short width;
         unsigned short height;

@@ -6,6 +6,7 @@
 
 // NOTE(marius): STB implementation, do not remove the define
 #define STB_IMAGE_IMPLEMENTATION
+
 #include <Orbit/stb_image.h>
 
 #include <Orbit/Texture.hpp>
@@ -18,7 +19,7 @@ namespace Orbit {
     Texture::Texture(const char *path) {
         int imgWidth, imgHeight, imgChannels;
         bool isPNG = false;
-        unsigned char* data;
+        unsigned char *data;
 
         if (strlen(path) > 4) {
             const char *end = path + (strlen(path) - 4);
@@ -41,7 +42,8 @@ namespace Orbit {
         this->width = imgWidth;
         this->height = imgHeight;
 
-        glTexImage2D(GL_TEXTURE_2D, 0, isPNG ? GL_RGBA : GL_RGB, imgWidth, imgHeight, 0, isPNG ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, isPNG ? GL_RGBA : GL_RGB, imgWidth, imgHeight, 0, isPNG ? GL_RGBA : GL_RGB,
+                     GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
         stbi_image_free(data);

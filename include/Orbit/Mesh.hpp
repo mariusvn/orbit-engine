@@ -15,12 +15,12 @@
 namespace Orbit {
     class Mesh {
     public:
-        Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture*> textures);
-        void draw(Shader* shader);
+        Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture *> textures);
+        void draw(Shader *shader);
 
         std::vector<Vertex> vertices;
         std::vector<unsigned int> indices;
-        std::vector<Texture*> textures;
+        std::vector<Texture *> textures;
         unsigned int VAO;
 
     private:

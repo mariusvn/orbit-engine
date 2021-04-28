@@ -10,7 +10,7 @@
 #include <string>
 #include <cstddef>
 
-Orbit::Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture*> textures) {
+Orbit::Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture *> textures) {
     this->vertices = std::move(vertices);
     this->indices = std::move(indices);
     this->textures = std::move(textures);
@@ -18,16 +18,15 @@ Orbit::Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indice
 }
 
 void Orbit::Mesh::draw(Orbit::Shader *shader) {
-    unsigned int diffuseNr  = 1;
+    unsigned int diffuseNr = 1;
     unsigned int specularNr = 1;
-    unsigned int normalNr   = 1;
-    unsigned int heightNr   = 1;
-    for(unsigned int i = 0; i < textures.size(); i++)
-    {
+    unsigned int normalNr = 1;
+    unsigned int heightNr = 1;
+    for (unsigned int i = 0; i < textures.size(); i++) {
         glActiveTexture(GL_TEXTURE0 + i);
         std::string uniformName;
         Texture::Type type = textures[i]->type;
-        switch(type) {
+        switch (type) {
             case Texture::TEX_DIFFUSE:
                 uniformName = "texture_diffuse" + std::to_string(diffuseNr++);
                 break;
@@ -40,7 +39,8 @@ void Orbit::Mesh::draw(Orbit::Shader *shader) {
             case Texture::TEX_HEIGHT:
                 uniformName = "texture_height" + std::to_string(heightNr++);
                 break;
-            default: continue;
+            default:
+                continue;
         }
 
         glUniform1i(glGetUniformLocation(shader->getShaderProgram(), uniformName.c_str()), i);
@@ -69,20 +69,20 @@ void Orbit::Mesh::setupMesh() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) 0);
 
     // vertex normals
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, normal));
     // vertex texture coords
     glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texCoords));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, texCoords));
     // vertex tangent
     glEnableVertexAttribArray(3);
-    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tangent));
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, tangent));
     // vertex bitangent
     glEnableVertexAttribArray(4);
-    glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, bitangent));
+    glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, bitangent));
 
     glBindVertexArray(0);
 }

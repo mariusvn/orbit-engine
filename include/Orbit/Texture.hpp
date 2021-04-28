@@ -21,7 +21,7 @@ namespace Orbit {
         };
 
         Type type = TEX_DIFFUSE;
-        const char* path;
+        const char *path;
 
     private:
         unsigned int textureId = 0;

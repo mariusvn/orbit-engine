@@ -12,9 +12,9 @@
 namespace Orbit {
     class Shader {
     public:
-        static Shader* loadFromFiles(const char* vertex, const char* fragment);
-        static Shader* loadFromMemory(const char* vertex_content, const char* fragment_content);
-        static Shader* getStandardShader();
+        static Shader *loadFromFiles(const char *vertex, const char *fragment);
+        static Shader *loadFromMemory(const char *vertex_content, const char *fragment_content);
+        static Shader *getStandardShader();
 
         void use();
         void set(const char *name, float data);
@@ -25,11 +25,11 @@ namespace Orbit {
         unsigned int getShaderProgram() const;
 
     private:
-        explicit Shader(const char* vcontent, const char* fcontent);
+        explicit Shader(const char *vcontent, const char *fcontent);
 
         static const char *readFile(const char *path);
         static void checkCompileStatus(unsigned int target, unsigned int type);
-        inline static Shader* standardShader = nullptr;
+        inline static Shader *standardShader = nullptr;
 
         unsigned int vertexShader = 0;
         unsigned int fragmentShader = 0;

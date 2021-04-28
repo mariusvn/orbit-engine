@@ -13,11 +13,11 @@
 
 namespace Orbit {
 
-    void ImGuiHandler::init(GLFWwindow* window) {
+    void ImGuiHandler::init(GLFWwindow *window) {
         IMGUI_CHECKVERSION();
         ImGuiHandler::window = window;
         ImGui::CreateContext();
-        ImGuiIO& iodata = ImGui::GetIO();
+        ImGuiIO &iodata = ImGui::GetIO();
         ImGuiHandler::io = &iodata;
         ImGui::StyleColorsDark();
         ImGuiHandler::setupImGuiStyle();
@@ -47,14 +47,14 @@ namespace Orbit {
         glBindTexture(GL_TEXTURE_2D, ImGuiHandler::texture);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glBindTexture(GL_TEXTURE_2D, 0);
-        glViewport(0,0,(int)ImGuiHandler::texResolution.x,(int)ImGuiHandler::texResolution.y);
+        glViewport(0, 0, (int) ImGuiHandler::texResolution.x, (int) ImGuiHandler::texResolution.y);
     }
 
     void ImGuiHandler::stopFrameBuffer() {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         int width, height;
         glfwGetFramebufferSize(ImGuiHandler::window, &width, &height);
-        glViewport(0,0,width,height);
+        glViewport(0, 0, width, height);
     }
 
     void ImGuiHandler::initFrameBuffer(ImVec2 resolution) {
@@ -68,9 +68,11 @@ namespace Orbit {
         glGenTextures(1, &ImGuiHandler::texture);
         glBindTexture(GL_TEXTURE_2D, ImGuiHandler::texture);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)ImGuiHandler::texResolution.x, (int)ImGuiHandler::texResolution.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int) ImGuiHandler::texResolution.x,
+                     (int) ImGuiHandler::texResolution.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, (int)ImGuiHandler::texResolution.x, (int)ImGuiHandler::texResolution.y);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, (int) ImGuiHandler::texResolution.x,
+                              (int) ImGuiHandler::texResolution.y);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, ImGuiHandler::depthbuffer);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -87,20 +89,20 @@ namespace Orbit {
         glDeleteTextures(1, &ImGuiHandler::texture);
     }
 
-    void ImGuiHandler::renderDebugMenu(unsigned int renderTexture, Orbit::Window* window) {
+    void ImGuiHandler::renderDebugMenu(unsigned int renderTexture, Orbit::Window *window) {
         ImGui::SetNextWindowSize(ImVec2(window->getWidth(), window->getHeight()));
-        ImGui::SetNextWindowPos(ImVec2(0,0));
+        ImGui::SetNextWindowPos(ImVec2(0, 0));
         ImGui::SetNextWindowBgAlpha(1.0);
         ImGui::Begin("Orbit Engine##Main", nullptr,
                      ImGuiWindowFlags_NoCollapse |
                      ImGuiWindowFlags_NoResize |
                      ImGuiWindowFlags_NoNav |
                      ImGuiWindowFlags_NoMove);
-        void **tex = (void**) &renderTexture;
+        void **tex = (void **) &renderTexture;
         ImGui::BeginChild("Viewport", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.6f, window->getHeight() - 20));
         {
             ImVec2 renderSize = ImVec2(ImGui::GetWindowContentRegionWidth(), window->getHeight() - 20);
-            const vec2& vec = Runtime::getRenderResolution();
+            const vec2 &vec = Runtime::getRenderResolution();
             if (vec.x != renderSize.x || vec.y != renderSize.y) {
                 const vec2 nRenderRes = vec2(renderSize.x, renderSize.y);
                 Runtime::setRenderResolution(nRenderRes);
@@ -113,7 +115,7 @@ namespace Orbit {
         ImGui::EndChild();
         ImGui::SameLine();
         ImGui::BeginChild("Inspector");
-        const Scene* currentScene = SceneManager::getCurrentScene();
+        const Scene *currentScene = SceneManager::getCurrentScene();
         ImGuiHandler::menu.drawInspector(currentScene);
         ImGui::EndChild();
         ImGui::End();
@@ -124,9 +126,9 @@ namespace Orbit {
         glBindTexture(GL_TEXTURE_2D, ImGuiHandler::texture);
         glBindRenderbuffer(GL_RENDERBUFFER, ImGuiHandler::depthbuffer);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int)res.x, (int)res.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (int) res.x, (int) res.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, (int)res.x, (int)res.y);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, (int) res.x, (int) res.y);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 

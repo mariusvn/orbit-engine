@@ -16,12 +16,12 @@
 
 namespace Orbit {
 
-    class GameObject: public Transformable {
+    class GameObject : public Transformable {
     public:
-        std::vector<GameObject*> children{};
-        std::vector<Component*> components{};
+        std::vector<GameObject *> children{};
+        std::vector<Component *> components{};
         std::string name = "GameObject";
-        Model* model = nullptr;
+        Model *model = nullptr;
 
         void draw(mat4 parentTranformMatrix);
 
