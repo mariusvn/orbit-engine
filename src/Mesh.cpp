@@ -6,7 +6,6 @@
 
 #include <Orbit/Mesh.hpp>
 #include <glad/glad.h>
-#include <utility>
 #include <string>
 #include <cstddef>
 
@@ -21,38 +20,10 @@ Orbit::Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indice
 }
 
 void Orbit::Mesh::draw(Orbit::Shader *shader) {
-    unsigned int diffuseNr = 1;
-    unsigned int specularNr = 1;
-    unsigned int normalNr = 1;
-    unsigned int heightNr = 1;
-    for (unsigned int i = 0; i < textures.size(); i++) {
-        glActiveTexture(GL_TEXTURE0 + i);
-        std::string uniformName;
-        Texture::Type type = textures[i]->type;
-        switch (type) {
-            case Texture::TEX_DIFFUSE:
-                uniformName = "texture_diffuse" + std::to_string(diffuseNr++);
-                break;
-            case Texture::TEX_SPECULAR:
-                uniformName = "texture_specular" + std::to_string(specularNr++);
-                break;
-            case Texture::TEX_NORMAL:
-                uniformName = "texture_normal" + std::to_string(normalNr++);
-                break;
-            case Texture::TEX_HEIGHT:
-                uniformName = "texture_height" + std::to_string(heightNr++);
-                break;
-            default:
-                continue;
-        }
-
-        glUniform1i(glGetUniformLocation(shader->getShaderProgram(), uniformName.c_str()), i);
-        glBindTexture(GL_TEXTURE_2D, textures[i]->getTextureId());
-    }
-
+    this->updateTextures(shader);
 
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, (GLsizei) indices.size(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, (GLsizei) indices.size(), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
 
 
@@ -88,4 +59,35 @@ void Orbit::Mesh::setupMesh() {
     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *) offsetof(Vertex, bitangent));
 
     glBindVertexArray(0);
+}
+
+void Orbit::Mesh::updateTextures(Shader *shader) {
+    unsigned int diffuseNr = 1;
+    unsigned int specularNr = 1;
+    unsigned int normalNr = 1;
+    unsigned int heightNr = 1;
+    for (unsigned int i = 0; i < textures.size(); i++) {
+        glActiveTexture(GL_TEXTURE0 + i);
+        std::string uniformName;
+        Texture::Type type = textures[i]->type;
+        switch (type) {
+            case Texture::TEX_DIFFUSE:
+                uniformName = "texture_diffuse" + std::to_string(diffuseNr++);
+                break;
+            case Texture::TEX_SPECULAR:
+                uniformName = "texture_specular" + std::to_string(specularNr++);
+                break;
+            case Texture::TEX_NORMAL:
+                uniformName = "texture_normal" + std::to_string(normalNr++);
+                break;
+            case Texture::TEX_HEIGHT:
+                uniformName = "texture_height" + std::to_string(heightNr++);
+                break;
+            default:
+                continue;
+        }
+
+        glUniform1i(glGetUniformLocation(shader->getShaderProgram(), uniformName.c_str()), (GLint)i);
+        glBindTexture(GL_TEXTURE_2D, textures[i]->getTextureId());
+    }
 }

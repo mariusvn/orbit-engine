@@ -28,7 +28,8 @@ namespace Orbit {
         explicit Shader(const char *vcontent, const char *fcontent);
 
         static const char *readFile(const char *path);
-        static void checkCompileStatus(unsigned int target, unsigned int type);
+        static void checkCompileStatus(unsigned int target);
+        static void checkLinkStatus(unsigned int target);
         inline static Shader *standardShader = nullptr;
 
         unsigned int vertexShader = 0;

@@ -25,7 +25,13 @@ endif()
 
 file(GLOB src src/*.cpp src/**/*.cpp)
 
-add_library(OrbitEngine SHARED ${src})
+if (NOT DEFINED BUILD_STATIC)
+    set(LIB_BUILD_TYPE SHARED)
+else()
+    set(LIB_BUILD_TYPE STATIC)
+endif()
+
+add_library(OrbitEngine ${LIB_BUILD_TYPE} ${src})
 set_target_properties(OrbitEngine PROPERTIES OUTPUT_NAME "orbit")
 
 target_link_libraries(OrbitEngine PUBLIC "${CMAKE_SOURCE_DIR}/${GLFW_LOCATION}/lib-static-ucrt/glfw3.dll")

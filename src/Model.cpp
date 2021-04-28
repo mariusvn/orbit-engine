@@ -31,6 +31,7 @@ namespace Orbit {
         std::string spath(path);
         directory = spath.substr(0, spath.find_last_of('/'));
         this->processNode(scene->mRootNode, scene);
+        importer.FreeScene();
     }
 
     void Model::processNode(aiNode *node, const aiScene *scene) {

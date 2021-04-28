@@ -21,16 +21,16 @@ namespace Orbit {
 
         glShaderSource(this->vertexShader, 1, &vcontent, nullptr);
         glCompileShader(this->vertexShader);
-        Shader::checkCompileStatus(this->vertexShader, GL_COMPILE_STATUS);
+        Shader::checkCompileStatus(this->vertexShader);
 
         glShaderSource(this->fragmentShader, 1, &fcontent, nullptr);
         glCompileShader(this->fragmentShader);
-        Shader::checkCompileStatus(this->fragmentShader, GL_COMPILE_STATUS);
+        Shader::checkCompileStatus(this->fragmentShader);
 
         glAttachShader(this->shaderProgram, this->vertexShader);
         glAttachShader(this->shaderProgram, this->fragmentShader);
         glLinkProgram(this->shaderProgram);
-        Shader::checkCompileStatus(this->shaderProgram, GL_LINK_STATUS);
+        Shader::checkLinkStatus(this->shaderProgram);
     }
 
     Shader *Shader::loadFromFiles(const char *vertex, const char *fragment) {
@@ -56,14 +56,28 @@ namespace Orbit {
         return this->shaderProgram;
     }
 
-    void Shader::checkCompileStatus(unsigned int target, GLenum type) {
+    void Shader::checkCompileStatus(unsigned int target) {
         int success;
-        glGetShaderiv(target, type, &success);
+        glGetShaderiv(target, GL_COMPILE_STATUS, &success);
         if (!success) {
             char infoLog[1024];
             glGetShaderInfoLog(target, 1024, nullptr, infoLog);
             error("Error while compiling shader:", infoLog);
             throw std::runtime_error("Error while compiling shader");
+        }
+    }
+
+    void Shader::checkLinkStatus(unsigned int target) {
+        GLint isLinked = 0;
+        glGetProgramiv(target, GL_LINK_STATUS, &isLinked);
+        if (isLinked == GL_FALSE) {
+            GLint maxLen = 0;
+            glGetProgramiv(target, GL_INFO_LOG_LENGTH, &maxLen);
+            char data[maxLen + 1];
+            glGetProgramInfoLog(target, maxLen, &maxLen, data);
+            glDeleteProgram(target);
+            error("Error while linking shader:", data);
+            throw std::runtime_error("Error while linking shader");
         }
     }
 

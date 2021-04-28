@@ -30,6 +30,10 @@ int main() {
         Orbit::SceneManager::setCurrentScene(scene);
         Orbit::Runtime::execute(window);
         delete window;
+        delete testModel;
+        delete scene;
+        delete gameObject;
+        delete gameObjectb;
     } catch (std::exception &e) {
         window->close();
         delete window;
