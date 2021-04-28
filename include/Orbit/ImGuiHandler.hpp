@@ -17,7 +17,7 @@ namespace Orbit {
 
     class ImGuiHandler {
     public:
-        static void init(GLFWwindow *window);
+        static void init(GLFWwindow *iwindow);
         static void startFrameBuffer();
         static void stopFrameBuffer();
         static void initFrameBuffer(ImVec2 res);
@@ -25,14 +25,14 @@ namespace Orbit {
         static void startFrame();
         static void render();
         static void destroy();
-        static void renderDebugMenu(unsigned int renderTexture, Orbit::Window *window);
+        static void renderDebugMenu(unsigned int renderTexture, Orbit::Window *iwindow);
         static void setViewportResolution(ImVec2 res);
 
 
         inline static unsigned int framebuffer;
         inline static unsigned int texture;
         inline static unsigned int depthbuffer;
-        inline static ImVec2 texResolution = ImVec2(0, 0);
+        inline static ImVec2 texResolution;
         inline static bool isDebugMenu = true;
     private:
         explicit ImGuiHandler() = default;

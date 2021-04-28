@@ -75,27 +75,27 @@ namespace Orbit {
         return Shader::standardShader;
     }
 
-    void Shader::use() {
+    void Shader::use() const {
         glUseProgram(this->shaderProgram);
     }
 
-    void Shader::set(const char *name, float data) {
+    void Shader::set(const char *name, float data) const {
         glUniform1f(glGetUniformLocation(this->shaderProgram, name), data);
     }
 
-    void Shader::set(const char *name, int data) {
+    void Shader::set(const char *name, int data) const {
         glUniform1i(glGetUniformLocation(this->shaderProgram, name), data);
     }
 
-    void Shader::set(const char *name, mat4 matrix) {
+    void Shader::set(const char *name, mat4 matrix) const {
         glUniformMatrix4fv(glGetUniformLocation(this->shaderProgram, name), 1, GL_FALSE, glm::value_ptr(matrix));
     }
 
-    void Shader::set(const char *name, vec3 vec) {
+    void Shader::set(const char *name, vec3 vec) const {
         glUniform3f(glGetUniformLocation(this->shaderProgram, name), vec.x, vec.y, vec.z);
     }
 
-    void Shader::set(const char *name, unsigned int data) {
+    void Shader::set(const char *name, unsigned int data) const {
         this->set(name, (int) data);
     }
 }

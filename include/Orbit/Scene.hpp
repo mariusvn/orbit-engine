@@ -13,7 +13,7 @@
 namespace Orbit {
     class Scene {
     public:
-        GameObject *root;
+        GameObject *root = nullptr;
         Camera camera;
     };
 }

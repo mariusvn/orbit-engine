@@ -11,7 +11,7 @@
 
 
 int main() {
-    Orbit::Window *window = new Orbit::Window(1280, 720, "Orbit Engine");
+    Orbit::Window *window = new Orbit::Window(1600, 900, "Orbit Engine");
     try {
         Orbit::Model *testModel = new Orbit::Model("demo/assets/steve/steve.obj");
         Orbit::Scene *scene = new Orbit::Scene();

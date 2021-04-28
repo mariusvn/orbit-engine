@@ -6,7 +6,6 @@
 
 #include <Orbit/Window.hpp>
 #include <stdexcept>
-#include <iostream>
 #include <Orbit/ImGuiHandler.hpp>
 
 namespace Orbit {

@@ -22,7 +22,7 @@ namespace Orbit {
         static void render(Window *window);
 
         inline static Scene *scene = nullptr;
-        inline static vec2 renderResolution = vec2(0.0f, 0.0f);
+        inline static vec2 renderResolution;
     };
 }
 

@@ -13,15 +13,15 @@
 
 namespace Orbit {
 
-    void ImGuiHandler::init(GLFWwindow *window) {
+    void ImGuiHandler::init(GLFWwindow *iwindow) {
         IMGUI_CHECKVERSION();
-        ImGuiHandler::window = window;
+        ImGuiHandler::window = iwindow;
         ImGui::CreateContext();
         ImGuiIO &iodata = ImGui::GetIO();
         ImGuiHandler::io = &iodata;
         ImGui::StyleColorsDark();
         ImGuiHandler::setupImGuiStyle();
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplGlfw_InitForOpenGL(iwindow, true);
         ImGui_ImplOpenGL3_Init();
     }
 
@@ -89,8 +89,8 @@ namespace Orbit {
         glDeleteTextures(1, &ImGuiHandler::texture);
     }
 
-    void ImGuiHandler::renderDebugMenu(unsigned int renderTexture, Orbit::Window *window) {
-        ImGui::SetNextWindowSize(ImVec2(window->getWidth(), window->getHeight()));
+    void ImGuiHandler::renderDebugMenu(unsigned int renderTexture, Orbit::Window *iwindow) {
+        ImGui::SetNextWindowSize(ImVec2(iwindow->getWidth(), iwindow->getHeight()));
         ImGui::SetNextWindowPos(ImVec2(0, 0));
         ImGui::SetNextWindowBgAlpha(1.0);
         ImGui::Begin("Orbit Engine##Main", nullptr,
@@ -99,9 +99,9 @@ namespace Orbit {
                      ImGuiWindowFlags_NoNav |
                      ImGuiWindowFlags_NoMove);
         void **tex = (void **) &renderTexture;
-        ImGui::BeginChild("Viewport", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.6f, window->getHeight() - 20));
+        ImGui::BeginChild("Viewport", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.6f, (float)iwindow->getHeight() - 20));
         {
-            ImVec2 renderSize = ImVec2(ImGui::GetWindowContentRegionWidth(), window->getHeight() - 20);
+            ImVec2 renderSize = ImVec2(ImGui::GetWindowContentRegionWidth(), (float)iwindow->getHeight() - 20);
             const vec2 &vec = Runtime::getRenderResolution();
             if (vec.x != renderSize.x || vec.y != renderSize.y) {
                 const vec2 nRenderRes = vec2(renderSize.x, renderSize.y);

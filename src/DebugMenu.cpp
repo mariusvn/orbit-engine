@@ -29,7 +29,7 @@ void Orbit::DebugMenu::drawInspector(const Orbit::Scene *scene) {
         this->drawGameObjectHierarchy(scene);
         ImGui::TableSetColumnIndex(1);
         if (this->targetGameObject) {
-            ImGui::Text(this->targetGameObject->name.c_str());
+            ImGui::Text("%s", this->targetGameObject->name.c_str());
             this->drawTagetProperties();
         } else {
             ImGui::Text("No Game Object Selected");

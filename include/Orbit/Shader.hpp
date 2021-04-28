@@ -16,12 +16,12 @@ namespace Orbit {
         static Shader *loadFromMemory(const char *vertex_content, const char *fragment_content);
         static Shader *getStandardShader();
 
-        void use();
-        void set(const char *name, float data);
-        void set(const char *name, int data);
-        void set(const char *name, mat4 matrix);
-        void set(const char *name, vec3 vec);
-        void set(const char *name, unsigned int data);
+        void use() const;
+        void set(const char *name, float data) const;
+        void set(const char *name, int data) const;
+        void set(const char *name, mat4 matrix) const;
+        void set(const char *name, vec3 vec) const;
+        void set(const char *name, unsigned int data) const;
         unsigned int getShaderProgram() const;
 
     private:
