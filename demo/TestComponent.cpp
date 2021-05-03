@@ -20,6 +20,7 @@ void TestComponent::onUpdate() {
     Orbit::GameObject& gm = getGameObject();
     gm.rotate(Orbit::vec3(0, this->speed, 0));
     if (gm.getRotation().y > 360) {gm.rotate(Orbit::vec3(0,-360, 0));}
+    if (gm.getRotation().y < 0) {gm.rotate(Orbit::vec3(0, 360, 0));}
 }
 
 void TestComponent::onEnable() {}

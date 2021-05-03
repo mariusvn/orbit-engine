@@ -116,7 +116,7 @@ namespace Orbit {
         }
         ImGui::EndChild();
         ImGui::SameLine();
-        ImGui::BeginChild("Inspector");
+        ImGui::BeginChild("Inspector", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.4f, height));
         const Scene *currentScene = SceneManager::getCurrentScene();
         ImGuiHandler::menu.drawInspector(currentScene);
         ImGui::EndChild();
