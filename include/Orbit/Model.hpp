@@ -30,8 +30,11 @@ namespace Orbit {
         explicit Model(const char *path, bool gamma = false);
         void draw();
 
+    protected:
+        virtual void loadModel(const char *path);
+
+
     private:
-        void loadModel(const char *path);
         void processNode(aiNode *node, const aiScene *scene);
         Mesh processMesh(aiMesh *mesh, const aiScene *scene);
         std::vector<Texture *> loadMaterialTextures(aiMaterial *mat, aiTextureType type, Texture::Type typeName);

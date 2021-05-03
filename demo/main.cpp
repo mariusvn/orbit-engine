@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include "TestComponent.hpp"
 #include <Orbit/Components/CameraComponent.hpp>
+#include <Orbit/Terrain.hpp>
 
 int main() {
     Orbit::Window *window = new Orbit::Window(1600, 900, "Orbit Engine");
@@ -20,12 +21,15 @@ int main() {
         Orbit::GameObject *gameObjectb = new Orbit::GameObject();
         TestComponent *testComponent = new TestComponent("testComponent");
         Orbit::CameraComponent *cameraComponent = new Orbit::CameraComponent();
+        Orbit::Terrain *terrain = new Orbit::Terrain(Orbit::vec<2, unsigned short>(10), glm::fvec2(10));
 
-        gameObject->model = testModel;
+        gameObject->model = terrain;
+        gameObjectb->translate(Orbit::vec3(-10,0,0));
         testComponent->assignGameObject(gameObject);
         cameraComponent->assignGameObject(gameObject);
         gameObjectb->name = "Test Object";
         gameObject->children.push_back(gameObjectb);
+        gameObjectb->model = testModel;
 
         scene->camera.translate(Orbit::vec3(0, -5.0f, -10.0f));
 

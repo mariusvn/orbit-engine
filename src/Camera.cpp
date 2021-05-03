@@ -17,3 +17,7 @@ unsigned char Orbit::Camera::getFOV() const {
 void Orbit::Camera::setFOV(unsigned char val) {
     this->fov = val;
 }
+
+Orbit::Camera::Camera() {
+    this->turnAround = false;
+}

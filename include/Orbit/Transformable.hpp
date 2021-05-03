@@ -27,6 +27,7 @@ namespace Orbit {
 
     protected:
         virtual mat4 getTransformMatrix() const;
+        bool turnAround = true;
 
     private:
         vec3 position{};

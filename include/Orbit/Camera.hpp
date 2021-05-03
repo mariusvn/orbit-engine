@@ -13,6 +13,7 @@
 namespace Orbit {
     struct Camera : public Transformable {
     public:
+        Camera();
         mat4 getTransformMatrix() const override;
         unsigned char getFOV() const;
         void setFOV(unsigned char val);

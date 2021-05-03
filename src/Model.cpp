@@ -6,6 +6,7 @@
 
 #include <Orbit/Model.hpp>
 #include <stdexcept>
+#include <Orbit/Logger.hpp>
 
 namespace Orbit {
     Model::Model(const char *path, bool gamma) : gammaCorrection(gamma) {
@@ -18,6 +19,8 @@ namespace Orbit {
     }
 
     void Model::loadModel(const char *path) {
+        if (!path)
+            return;
         Assimp::Importer importer;
         const unsigned int flags =
                 aiProcess_Triangulate |
