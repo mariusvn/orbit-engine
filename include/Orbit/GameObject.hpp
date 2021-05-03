@@ -24,6 +24,9 @@ namespace Orbit {
         Model *model = nullptr;
 
         void draw(mat4 parentTranformMatrix);
+        void init();
+        void update();
+        void unload();
 
     };
 

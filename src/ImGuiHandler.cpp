@@ -18,6 +18,7 @@ namespace Orbit {
         ImGuiHandler::window = iwindow;
         ImGui::CreateContext();
         ImGuiIO &iodata = ImGui::GetIO();
+        iodata.Fonts->AddFontFromFileTTF("assets\\fonts\\Segoe UI.ttf", 21);
         ImGuiHandler::io = &iodata;
         ImGui::StyleColorsDark();
         ImGuiHandler::setupImGuiStyle();
@@ -99,9 +100,10 @@ namespace Orbit {
                      ImGuiWindowFlags_NoNav |
                      ImGuiWindowFlags_NoMove);
         void **tex = (void **) &renderTexture;
-        ImGui::BeginChild("Viewport", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.6f, (float)iwindow->getHeight() - 20));
+        int height = ImGui::GetContentRegionAvail().y;
+        ImGui::BeginChild("Viewport", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.6f, height));
         {
-            ImVec2 renderSize = ImVec2(ImGui::GetWindowContentRegionWidth(), (float)iwindow->getHeight() - 20);
+            ImVec2 renderSize = ImVec2(ImGui::GetWindowContentRegionWidth(), height);
             const vec2 &vec = Runtime::getRenderResolution();
             if (vec.x != renderSize.x || vec.y != renderSize.y) {
                 const vec2 nRenderRes = vec2(renderSize.x, renderSize.y);

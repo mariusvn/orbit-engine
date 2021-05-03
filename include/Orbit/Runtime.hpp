@@ -20,6 +20,9 @@ namespace Orbit {
     private:
         explicit Runtime() = default;
         static void render(Window *window);
+        static void initCurrentScene();
+        static void updateCurrentScene();
+        static void unloadCurrentScene();
 
         inline static Scene *scene = nullptr;
         inline static vec2 renderResolution;

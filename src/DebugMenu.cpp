@@ -73,6 +73,7 @@ void Orbit::DebugMenu::drawGameObjectItem(Orbit::GameObject *go, unsigned long l
 void Orbit::DebugMenu::drawTagetProperties() {
     GameObject *target = this->targetGameObject;
 
+    ImGui::BeginChild("targetProperties", ImVec2(ImGui::GetContentRegionAvailWidth(), -10));
     ImGui::Text("Transform");
     {
         // NOTE(marius): Position
@@ -98,4 +99,30 @@ void Orbit::DebugMenu::drawTagetProperties() {
         if (targetScale.x != scale[0] || targetScale.y != scale[1] || targetScale.z != scale[2])
             target->setScale(vec3(scale[0], scale[1], scale[2]));
     }
+    {
+        for (unsigned short i  = 0; i < target->components.size(); i++) {
+            Component *component = target->components[i];
+            ImGui::Separator();
+
+            if (ImGui::CollapsingHeader(component->name.c_str())) {
+
+                ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding,  ImVec2(5.0f, 5.0f));
+                ImGui::BeginChild(("CompField" + std::to_string(i)).c_str(), ImVec2(0, 0), false, ImGuiWindowFlags_AlwaysUseWindowPadding);
+
+                bool checked = component->isEnabled();
+                ImGui::Checkbox("Active", &checked);
+
+                if (checked != component->isEnabled()) {
+                    if (checked) component->enable();
+                    else component->disable();
+                }
+
+                for (ComponentField *field : component->fields)
+                    field->drawImGuiInspector();
+                ImGui::EndChild();
+                ImGui::PopStyleVar();
+            }
+        }
+    }
+    ImGui::EndChild();
 }

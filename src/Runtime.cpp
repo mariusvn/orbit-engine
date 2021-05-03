@@ -15,6 +15,7 @@ namespace Orbit {
         assert(window);
         Runtime::setRenderResolution(vec2(window->getWidth(), window->getHeight()));
         ImGuiHandler::initFrameBuffer(ImVec2(window->getWidth(), window->getHeight()));
+        Runtime::initCurrentScene();
         while (window->isOpen()) {
             window->pollEvent();
             if (ImGuiHandler::isDebugMenu) {
@@ -28,7 +29,9 @@ namespace Orbit {
                 ImGuiHandler::render();
             }
             window->display();
+            Runtime::updateCurrentScene();
         }
+        Runtime::unloadCurrentScene();
         ImGuiHandler::deleteFrameBuffer();
         ImGuiHandler::destroy();
     }
@@ -57,5 +60,23 @@ namespace Orbit {
 
     const vec2 &Runtime::getRenderResolution() {
         return Runtime::renderResolution;
+    }
+
+    void Runtime::updateCurrentScene() {
+        const Scene *currentScene = SceneManager::getCurrentScene();
+        if (currentScene->root)
+            currentScene->root->update();
+    }
+
+    void Runtime::initCurrentScene() {
+        const Scene *currentScene = SceneManager::getCurrentScene();
+        if (currentScene->root)
+            currentScene->root->init();
+    }
+
+    void Runtime::unloadCurrentScene() {
+        const Scene *currentScene = SceneManager::getCurrentScene();
+        if (currentScene->root)
+            currentScene->root->unload();
     }
 }
