@@ -23,6 +23,7 @@ namespace Orbit {
         bool isFocused() const;
         unsigned short getWidth() const;
         unsigned short getHeight() const;
+        GLFWwindow &getInstance();
 
     private:
         GLFWwindow *window = nullptr;

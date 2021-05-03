@@ -9,6 +9,7 @@
 #include <Orbit/SceneManager.hpp>
 #include <stdexcept>
 #include "TestComponent.hpp"
+#include <Orbit/Components/CameraComponent.hpp>
 
 int main() {
     Orbit::Window *window = new Orbit::Window(1600, 900, "Orbit Engine");
@@ -18,9 +19,11 @@ int main() {
         Orbit::GameObject *gameObject = new Orbit::GameObject();
         Orbit::GameObject *gameObjectb = new Orbit::GameObject();
         TestComponent *testComponent = new TestComponent("testComponent");
+        Orbit::CameraComponent *cameraComponent = new Orbit::CameraComponent();
 
         gameObject->model = testModel;
         testComponent->assignGameObject(gameObject);
+        cameraComponent->assignGameObject(gameObject);
         gameObjectb->name = "Test Object";
         gameObject->children.push_back(gameObjectb);
 

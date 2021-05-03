@@ -8,11 +8,13 @@
 #include <Orbit/SceneManager.hpp>
 #include <cassert>
 #include <Orbit/ImGuiHandler.hpp>
+#include <Orbit/Input.hpp>
 
 namespace Orbit {
 
     void Runtime::execute(Window *window) {
         assert(window);
+        Input::initInput(window);
         Runtime::setRenderResolution(vec2(window->getWidth(), window->getHeight()));
         ImGuiHandler::initFrameBuffer(ImVec2(window->getWidth(), window->getHeight()));
         Runtime::initCurrentScene();

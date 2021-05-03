@@ -21,7 +21,7 @@ public:
     void onUnload() final;
 
 private:
-    float speed = 1.0f;
+    float speed = 0.0f;
 };
 
 

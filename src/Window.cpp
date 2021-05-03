@@ -86,4 +86,8 @@ namespace Orbit {
         return this->height;
     }
 
+    GLFWwindow &Window::getInstance() {
+        return *this->window;
+    }
+
 }

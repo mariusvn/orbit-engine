@@ -12,7 +12,7 @@ namespace Orbit {
         SceneManager::currentScene = scene;
     }
 
-    const Scene *SceneManager::getCurrentScene() {
+    Scene *SceneManager::getCurrentScene() {
         return SceneManager::currentScene;
     }
 }

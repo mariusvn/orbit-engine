@@ -9,6 +9,7 @@
 #include <Orbit/GameObject.hpp>
 #include <string>
 #include <iostream>
+#include <Orbit/Input.hpp>
 
 TestComponent::TestComponent(const std::string& name): Orbit::Component(name.c_str()) {}
 

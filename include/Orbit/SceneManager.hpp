@@ -13,7 +13,7 @@ namespace Orbit {
     class SceneManager {
     public:
         static void setCurrentScene(Scene *scene);
-        static const Scene *getCurrentScene();
+        static Scene *getCurrentScene();
 
     private:
         explicit SceneManager() = default;
